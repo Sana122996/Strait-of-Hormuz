@@ -1,0 +1,23 @@
+{
+  "sourceName": "英国联合海事资讯中心（JMIC/UKMTO）",
+  "sourceUrl": "https://www.ukmto.org/partner-products/jmic-products/jmic-advisories/2026",
+  "globalRemark": "注意：数据来自英国联合海事资讯中心及标普，统计对象为1000总吨及以上且开启自动识别系统的货运船舶。基于自动识别系统的通行数据仅涵盖主动发送信号的船舶，可能无法追踪到关闭自动识别系统或受卫星导航干扰的船只，因此实际海峡通行量可能与当前观测数据存在差异。",
+  "records": [
+    {"date": "2026-02-28", "cargoCrossings": 98, "tankerCrossings": 50, "totalCrossings": 148, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-01", "cargoCrossings": 18, "tankerCrossings": 3, "totalCrossings": 21, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-02", "cargoCrossings": 7, "tankerCrossings": 3, "totalCrossings": 10, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-03", "cargoCrossings": 1, "tankerCrossings": 0, "totalCrossings": 1, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-04", "cargoCrossings": 2, "tankerCrossings": 0, "totalCrossings": 2, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-05", "cargoCrossings": 4, "tankerCrossings": 2, "totalCrossings": 6, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-06", "cargoCrossings": 4, "tankerCrossings": 2, "totalCrossings": 6, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-07", "cargoCrossings": 1, "tankerCrossings": 0, "totalCrossings": 1, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-08", "cargoCrossings": 1, "tankerCrossings": 0, "totalCrossings": 1, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-09", "cargoCrossings": 1, "tankerCrossings": 0, "totalCrossings": 1, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-10", "cargoCrossings": 7, "tankerCrossings": 1, "totalCrossings": 8, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-11", "cargoCrossings": 1, "tankerCrossings": 0, "totalCrossings": 1, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-12", "cargoCrossings": 5, "tankerCrossings": 0, "totalCrossings": 5, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-13", "cargoCrossings": 1, "tankerCrossings": 1, "totalCrossings": 2, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-14", "cargoCrossings": 2, "tankerCrossings": 1, "totalCrossings": 3, "remark": "UKMTO/JMIC + 标普，AIS口径"},
+    {"date": "2026-03-15", "cargoCrossings": 3, "tankerCrossings": 0, "totalCrossings": 3, "remark": "UKMTO/JMIC + 标普，AIS口径（你提供的图表）"}
+  ]
+}

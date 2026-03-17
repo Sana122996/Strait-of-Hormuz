@@ -1,0 +1,19 @@
+{
+  "sourceName": "Windward 公开博客",
+  "sourceUrl": "https://windward.ai/blog/",
+  "globalRemark": "数据源自 Windward。受近期地缘局势骤然升级影响，霍尔木兹海峡及周边海域出现大规模卫星定位信号干扰，且大量商船为规避风险选择关闭自动识别系统进行静默航行或直接绕道，导致近期观测到的海峡实际通行量数据急剧萎缩。",
+  "records": [
+    {"date": "2026-02-28", "inboundCrossings": 0, "outboundCrossings": 52, "totalCrossings": 52, "remark": "Windward口径"},
+    {"date": "2026-03-01", "inboundCrossings": 4, "outboundCrossings": 14, "totalCrossings": 18, "remark": "Windward口径"},
+    {"date": "2026-03-02", "inboundCrossings": 3, "outboundCrossings": 4, "totalCrossings": 7, "remark": "Windward口径"},
+    {"date": "2026-03-03", "inboundCrossings": 2, "outboundCrossings": 2, "totalCrossings": 4, "remark": "Windward口径"},
+    {"date": "2026-03-04", "inboundCrossings": 4, "outboundCrossings": 1, "totalCrossings": 5, "remark": "Windward口径"},
+    {"date": "2026-03-07", "inboundCrossings": 1, "outboundCrossings": 2, "totalCrossings": 3, "remark": "Windward口径"},
+    {"date": "2026-03-08", "inboundCrossings": 0, "outboundCrossings": 2, "totalCrossings": 2, "remark": "Windward口径"},
+    {"date": "2026-03-09", "inboundCrossings": 0, "outboundCrossings": 1, "totalCrossings": 1, "remark": "Windward口径"},
+    {"date": "2026-03-10", "inboundCrossings": 0, "outboundCrossings": 2, "totalCrossings": 2, "remark": "Windward口径"},
+    {"date": "2026-03-11", "inboundCrossings": 0, "outboundCrossings": 2, "totalCrossings": 2, "remark": "Windward口径"},
+    {"date": "2026-03-14", "inboundCrossings": 0, "outboundCrossings": 0, "totalCrossings": 0, "remark": "Windward口径"},
+    {"date": "2026-03-15", "inboundCrossings": 0, "outboundCrossings": 3, "totalCrossings": 3, "remark": "Windward口径"}
+  ]
+}

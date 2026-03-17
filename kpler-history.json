@@ -1,0 +1,128 @@
+{
+  "name": "Kpler（手工表格）",
+  "url": "https://www.marinetraffic.com/en/maritime-news/34/risk%20and%20compliance",
+  "method": "MarineTraffic页面抓取受Cloudflare拦截，当前使用手工Excel口径。",
+  "globalRemark": "口径字段：被制裁船只/影子船只/其他常规船只/总通行量；日期为Excel序列日期。",
+  "records": [
+    {
+      "date": "2026-03-15",
+      "sanctionedVessels": 2.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 5.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-14",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 4.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-13",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 0.0,
+      "totalCrossings": 1.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-12",
+      "sanctionedVessels": 0.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 1.0,
+      "totalCrossings": 2.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-11",
+      "sanctionedVessels": 3.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 4.0,
+      "totalCrossings": 8.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-10",
+      "sanctionedVessels": 4.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 6.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-09",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 3.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-08",
+      "sanctionedVessels": 2.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 4.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-07",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 3.0,
+      "totalCrossings": 4.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-06",
+      "sanctionedVessels": 2.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 1.0,
+      "totalCrossings": 3.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-05",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 2.0,
+      "totalCrossings": 4.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-04",
+      "sanctionedVessels": 3.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 3.0,
+      "totalCrossings": 7.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-03",
+      "sanctionedVessels": 2.0,
+      "shadowVessels": 0.0,
+      "otherRegularVessels": 1.0,
+      "totalCrossings": 3.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-02",
+      "sanctionedVessels": 1.0,
+      "shadowVessels": 1.0,
+      "otherRegularVessels": 7.0,
+      "totalCrossings": 9.0,
+      "remark": "Kpler口径（手工Excel）"
+    },
+    {
+      "date": "2026-03-01",
+      "sanctionedVessels": 6.0,
+      "shadowVessels": 3.0,
+      "otherRegularVessels": 20.0,
+      "totalCrossings": 29.0,
+      "remark": "Kpler口径（手工Excel）"
+    }
+  ]
+}
