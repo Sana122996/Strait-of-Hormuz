@@ -28,9 +28,17 @@
     body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); line-height: 1.5; padding: 16px; }
     .page { max-width: 1340px; margin: 0 auto; display: grid; gap: 16px; }
 
-    /* --- 清爽版标题区域 --- */
-    .header-simple { padding: 4px 0 12px; display: flex; flex-direction: column; gap: 8px; }
-    .header-simple h1 { margin: 0; font-size: clamp(22px, 5vw, 32px); font-weight: 800; letter-spacing: 0.5px; color: var(--ink); }
+    /* --- 清爽版标题区域 + 货船动效 --- */
+    .header-simple { 
+      padding: 4px 0 12px; 
+      display: flex; 
+      justify-content: space-between;
+      align-items: center; 
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .header-info { display: flex; flex-direction: column; gap: 8px; }
+    .header-info h1 { margin: 0; font-size: clamp(22px, 5vw, 32px); font-weight: 800; letter-spacing: 0.5px; color: var(--ink); }
     .header-meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     
     .status-badge {
@@ -41,6 +49,21 @@
     .status-badge::before { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
     .global-update-time { font-size: 12px; color: var(--muted); font-weight: 700; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+    /* 货船动画 */
+    .header-ship-art {
+      width: 120px;
+      height: 60px;
+      margin-left: auto;
+      animation: floatShip 4s ease-in-out infinite;
+      opacity: 0.85;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+    @keyframes floatShip {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(1.5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
 
     /* 行情滚动条 */
     .market-ticker { border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 4px; }
@@ -99,8 +122,10 @@
     .chg-tag.down { background: var(--green-soft); color: var(--green); }
     .chg-tag.flat { background: #e2e8f0; color: var(--muted); }
 
-    /* 3. 压力系数 & 仪表盘 */
-    .gauge-container { width: 100%; height: 140px; margin-top: -10px; transition: all 0.5s ease; }
+    /* 3. 压力系数 & 仪表盘 (同行布局) */
+    .stress-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(0,0,0,0.03); }
+    .gauge-container { width: 130px; height: 75px; flex-shrink: 0; }
+    
     .stress-rank-head { display: flex; align-items: center; justify-content: flex-start; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px; position: relative; }
     .help-icon { width: 14px; height: 14px; border-radius: 50%; background: var(--muted); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; cursor: help; }
     .help-tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 100%; left: 0; margin-bottom: 8px; padding: 8px 12px; background: rgba(15, 23, 42, 0.9); color: white; font-size: 11px; border-radius: 6px; white-space: nowrap; transition: 0.2s; z-index: 10; font-weight: normal; }
@@ -118,17 +143,17 @@
     .snapshot-overlay { position: absolute; top: 12px; left: 12px; display: grid; gap: 6px; pointer-events: none; }
     .snapshot-stamp { border-radius: 8px; padding: 4px 8px; font-size: 11px; color: #fff; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); }
     
-    /* 进度条播放器 (图3样式) */
+    /* 进度条播放器 (修改为 0-6-12-18) */
     .snapshot-player-wrapper { display: flex; flex-direction: column; gap: 8px; background: var(--bg); padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--line); }
     .snapshot-controls-row { display: flex; align-items: center; gap: 12px; }
     .play-btn { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--sea); color: white; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .time-slider-container { flex: 1; display: flex; flex-direction: column; position: relative; }
     .time-slider { -webkit-appearance: none; width: 100%; height: 4px; background: #cbd5e1; border-radius: 2px; outline: none; margin: 10px 0 4px; }
     .time-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--sea); cursor: pointer; box-shadow: 0 0 4px rgba(0,0,0,0.3); }
-    .time-ticks { display: flex; justify-content: space-between; padding: 0 2px; margin-top: 2px; font-size: 10px; color: var(--muted); font-weight: 700; }
+    .time-ticks { display: flex; justify-content: space-between; padding: 0; margin-top: 2px; font-size: 10px; color: var(--muted); font-weight: 700; }
     .time-display { font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; color: var(--sea); }
 
-    /* 通行记录：3卡片并排 (强制) + 图表切换 */
+    /* 通行记录：3卡片并排 */
     .source-cards { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 8px; margin-bottom: 20px; }
     .source-card { border: 1px solid var(--line); border-radius: 10px; padding: 10px 4px; background: var(--bg); cursor: pointer; text-align: center; transition: 0.2s; }
     .source-card.active { border-color: var(--sea); background: #fff; box-shadow: 0 0 0 2px var(--sea-soft); }
@@ -189,6 +214,9 @@
     .commodity-card { border-radius: 8px; padding: 10px; border: 1px solid var(--line); background: #fff; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
     .commodity-head { display: flex; justify-content: space-between; align-items: flex-start; }
     .commodity-head strong { font-size: 13px; font-weight: 800; display: flex; align-items: flex-start; gap: 4px; line-height: 1.3;}
+    /* SVG Icon Style */
+    .c-icon { width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: var(--sea); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
+    
     .risk-badge { font-size: 10px; padding: 2px 4px; border-radius: 4px; background: var(--red-soft); color: var(--red); font-weight: 700; margin-top: 1px; flex-shrink: 0; }
     .c-core { display: flex; justify-content: space-between; font-size: 11px; }
     .c-core .label { color: var(--muted); }
@@ -208,11 +236,24 @@
   <div class="page">
     
     <div class="header-simple">
-      <h1>霍尔木兹海峡通行量仪表盘</h1>
-      <div class="header-meta-row">
-        <div class="status-badge" id="tag-status">状态获取中...</div>
-        <div class="global-update-time">更新时间 (北京)：<span id="global-update-time">--</span></div>
+      <div class="header-info">
+        <h1>霍尔木兹海峡通行量仪表盘</h1>
+        <div class="header-meta-row">
+          <div class="status-badge" id="tag-status">状态获取中...</div>
+          <div class="global-update-time">更新时间 (北京)：<span id="global-update-time">--</span></div>
+        </div>
       </div>
+      <svg class="header-ship-art" viewBox="0 0 120 60">
+        <path d="M 0,50 Q 15,45 30,50 T 60,50 T 90,50 T 120,50" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+        <path d="M 10,46 L 20,28 H 96 L 115,46 Z" fill="var(--sea)"/>
+        <rect x="25" y="20" width="16" height="8" fill="#ef4444" rx="1"/>
+        <rect x="43" y="14" width="16" height="14" fill="#f59e0b" rx="1"/>
+        <rect x="61" y="20" width="16" height="8" fill="#10b981" rx="1"/>
+        <rect x="82" y="14" width="12" height="14" fill="#64748b"/>
+        <rect x="84" y="8" width="8" height="6" fill="#94a3b8"/>
+        <line x1="88" y1="8" x2="88" y2="2" stroke="#94a3b8" stroke-width="2"/>
+        <circle cx="88" cy="2" r="1.5" fill="#ef4444"/>
+      </svg>
     </div>
 
     <section class="market-ticker" aria-label="重点行情滚动">
@@ -261,6 +302,7 @@
       <div class="combo-col">
         <div class="inline-header-row">
           <div class="combo-title" style="margin: 0;">日通行量数据</div>
+          <div class="sub-meta" style="margin: 0;">各源数据对比</div>
         </div>
         <div class="daily-flow-list">
           <div class="daily-flow-item">
@@ -282,10 +324,10 @@
       </div>
 
       <div class="combo-col">
-        <div class="inline-header-row" style="margin-bottom: 4px;">
+        <div class="stress-top-row">
           <div class="combo-title" style="margin: 0;">通行压力系数</div>
+          <div id="stress-gauge" class="gauge-container"></div>
         </div>
-        <div id="stress-gauge" class="gauge-container"></div>
         <div class="stress-rank-head">
           高压品种排序
           <span class="help-icon" id="stress-help-icon">?</span>
@@ -299,26 +341,25 @@
     <section class="panel">
       <div class="panel-head">
         <h2 style="margin: 0;">霍尔木兹海峡动态快照</h2>
-        <p style="margin: 0;">来源：MarineTraffic实时数据</p>
+        <p style="margin: 0;">来源：MarineTraffic</p>
       </div>
       <div class="panel-body">
         <div class="snapshot-gif-wrap">
           <img id="snapshot-img" class="snapshot-img" src="https://img.jin10.com/news/26/03/zU9femLAOwlPyN2MEJuxe.jpg" alt="实时快照" />
           <div class="snapshot-overlay">
-            <div id="snapshot-generated-at" class="snapshot-stamp">快照生成时间：2026-03-17 12:00:00</div>
+            <div id="snapshot-generated-at" class="snapshot-stamp">快照时间：2026-03-17 12:00:00</div>
           </div>
         </div>
         <div class="snapshot-player-wrapper">
           <div class="snapshot-controls-row">
             <button class="play-btn" id="snapshot-play-btn">▶</button>
             <div class="time-slider-container">
-              <input type="range" class="time-slider" id="snapshot-slider" min="0" max="23" value="12">
+              <input type="range" class="time-slider" id="snapshot-slider" min="0" max="18" step="6" value="12">
               <div class="time-ticks">
                 <span>00:00</span>
                 <span>06:00</span>
                 <span>12:00</span>
                 <span>18:00</span>
-                <span>23:00</span>
               </div>
             </div>
             <div class="time-display" id="snapshot-time-label">12:00</div>
@@ -376,7 +417,7 @@
     <section class="panel">
       <div class="panel-head">
         <h2 style="margin: 0;">遇袭船只时间轴</h2>
-        <p style="margin: 0;">来源：战争研究所 (ISW) 等</p>
+        <p style="margin: 0;">来源：ISW等</p>
       </div>
       <div class="panel-body" style="padding-bottom: 0;">
         <div id="attack-timeline" class="attack-timeline-hz">
@@ -484,6 +525,7 @@
       document.getElementById('val-stranded').textContent = formatCount(strandedTotal);
       document.getElementById('val-transit').textContent = formatCount(realtime.shipCountCurrentTransits);
 
+      // 滞留条形图
       const chartCollapse = document.getElementById('chart-collapse');
       const chartBtn = document.getElementById('chart-toggle-btn');
       let barChart = null;
@@ -526,17 +568,17 @@
       renderChgTag('chg-windward', getCollapsePct(sources, 'windward'));
       renderChgTag('chg-kpler', getCollapsePct(sources, 'kpler'));
 
-      // 大仪表盘还原真实大小，高度140px，宽度100%
+      // 压力仪表盘
       const stressGauge = echarts.init(document.getElementById('stress-gauge'));
       const stressVal = exposure.stressPct || 0;
       
       const gaugeOption = {
         series: [{
-          type: 'gauge', startAngle: 180, endAngle: 0, center: ['50%', '75%'], radius: '100%', min: 0, max: 100, splitNumber: 5,
-          axisLine: { lineStyle: { width: 14, color: [[0.3, '#10b981'], [0.7, '#f59e0b'], [1, '#ef4444']] } },
-          pointer: { length: '60%', width: 6, offsetCenter: [0, '-10%'] },
+          type: 'gauge', startAngle: 180, endAngle: 0, center: ['50%', '85%'], radius: '120%', min: 0, max: 100, splitNumber: 5,
+          axisLine: { lineStyle: { width: 10, color: [[0.3, '#10b981'], [0.7, '#f59e0b'], [1, '#ef4444']] } },
+          pointer: { length: '65%', width: 5, offsetCenter: [0, '-10%'] },
           axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
-          detail: { fontSize: 32, offsetCenter: [0, '-25%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
+          detail: { fontSize: 24, offsetCenter: [0, '-25%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
           data: [{ value: 0 }] 
         }]
       };
@@ -570,7 +612,7 @@
       const updateUI = (val) => {
         timeLabel.textContent = `${String(val).padStart(2, '0')}:00`;
         imgEl.src = baseImg + "?hour=" + val;
-        stampEl.textContent = `快照生成时间：2026-03-17 ${String(val).padStart(2, '0')}:00:00`;
+        stampEl.textContent = `快照时间：2026-03-17 ${String(val).padStart(2, '0')}:00:00`;
       };
 
       slider.oninput = () => {
@@ -583,11 +625,12 @@
         playBtn.textContent = isPlaying ? '⏸' : '▶';
         if (isPlaying) {
           interval = setInterval(() => {
-            let nextVal = parseInt(slider.value) + 1;
-            if (nextVal > 23) nextVal = 0;
+            // 只在 0, 6, 12, 18 之间切换
+            let nextVal = parseInt(slider.value) + 6;
+            if (nextVal > 18) nextVal = 0;
             slider.value = nextVal;
             updateUI(nextVal);
-          }, 800);
+          }, 1200); // 稍微放慢速度，让切换更清晰
         } else {
           clearInterval(interval);
         }
@@ -770,13 +813,34 @@
       });
     }
 
-    function getCommodityIcon(name) {
-      if(name.includes('原油') || name.includes('燃油')) return '🛢️';
-      if(name.includes('天然气') || name.includes('LNG')) return '❄️';
-      if(name.includes('集装箱')) return '📦';
-      if(name.includes('散货') || name.includes('矿')) return '⛴️';
-      if(name.includes('化工') || name.includes('塑料')) return '🧪';
-      return '⚓';
+    // 纯手工映射的专业 SVG Icons
+    function getCommoditySVG(name) {
+      if(name.includes('甲醇') || name.includes('化工') || name.includes('塑料')) {
+        // 化学烧瓶 (Flask)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M9 3h6v6l5 10a2 2 0 0 1-1.7 3H4.7A2 2 0 0 1 3 19l5-10V3z"></path></svg>`;
+      }
+      if(name.includes('原油') || name.includes('燃油')) {
+        // 油桶 (Oil Barrel)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2"></rect><path d="M5 8h14M5 16h14"></path></svg>`;
+      }
+      if(name.includes('天然气') || name.includes('LNG')) {
+        // 火焰 (Flame)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`;
+      }
+      if(name.includes('化肥')) {
+        // 编织袋 (Sack)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M8 4l2-2h4l2 2v2H8V4z"></path><path d="M6 6h12l2 14H4L6 6z"></path></svg>`;
+      }
+      if(name.includes('铝') || name.includes('矿') || name.includes('金属')) {
+        // 金属块 (Blocks/Cube)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path></svg>`;
+      }
+      if(name.includes('汽车') || name.includes('车')) {
+        // 小汽车 (Car)
+        return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg>`;
+      }
+      // 默认图标 (Box)
+      return `<svg class="c-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>`;
     }
 
     function renderCommodityGrid(exposure) {
@@ -787,7 +851,7 @@
         <div class="commodity-card">
           <div class="commodity-head">
             <strong style="align-items:flex-start; line-height:1.2;">
-              <span>${getCommodityIcon(item.name)}</span> 
+              ${getCommoditySVG(item.name)}
               <span>${formattedName}</span>
             </strong>
             <span class="risk-badge">${item.riskLevel}</span>
