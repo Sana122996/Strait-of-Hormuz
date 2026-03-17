@@ -25,45 +25,26 @@
 
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Source Han Sans', 'Helvetica Neue', sans-serif; }
 
-    body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); line-height: 1.5; padding: 20px; }
-    .page { max-width: 1340px; margin: 0 auto; display: grid; gap: 20px; }
+    body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); line-height: 1.5; padding: 16px; }
+    .page { max-width: 1340px; margin: 0 auto; display: grid; gap: 16px; }
 
-    /* --- 全新横幅标题区域 --- */
-    .header-banner {
-      padding: 60px 40px; 
-      display: flex; 
-      align-items: center; 
-      gap: 16px; 
-      flex-wrap: wrap;
-      border-radius: var(--radius-lg);
-      /* 半透明遮罩 + 背景图配置 */
-      background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.7)), url('./header-bg.jpg') no-repeat center center / cover;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-      margin-bottom: 4px;
-    }
-    .header-banner h1 { 
-      margin: 0; 
-      font-size: clamp(28px, 4vw, 40px); 
-      font-weight: 800; 
-      letter-spacing: 0.5px; 
-      color: #ffffff; 
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
-    }
+    /* 1. 紧凑型标题区域 (去掉了巨大的图片背景，字号缩小两档) */
+    .header-simple { padding: 4px 0 12px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .header-simple h1 { margin: 0; font-size: clamp(20px, 4.5vw, 26px); font-weight: 800; letter-spacing: 0.5px; }
     .status-badge {
-      display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
-      background: var(--red); color: white; border-radius: 999px; font-size: 14px; font-weight: 700;
-      animation: pulse 2s infinite;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+      background: var(--red); color: white; border-radius: 999px; font-size: 13px; font-weight: 700;
+      animation: pulse 2s infinite; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-    .status-badge::before { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); } 70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+    .status-badge::before { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
     /* 行情滚动条 */
     .market-ticker { border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 4px; }
     .market-track { display: flex; width: max-content; animation: marketTickerScroll 22s linear infinite; will-change: transform; }
     .market-ticker:hover .market-track { animation-play-state: paused; }
     .market-segment { display: flex; align-items: center; }
-    .market-item { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 16px; color: var(--ink); text-decoration: none; border-right: 1px solid var(--line); white-space: nowrap; font-size: 15px; line-height: 1.2; }
+    .market-item { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; color: var(--ink); text-decoration: none; border-right: 1px solid var(--line); white-space: nowrap; font-size: 14px; line-height: 1.2; }
     .market-item:hover { background: rgba(15, 23, 42, 0.03); }
     .market-item .name { font-weight: 700; color: var(--ink); }
     .market-item .price { font-weight: 800; font-family: "DIN Alternate", sans-serif; }
@@ -72,23 +53,23 @@
     @keyframes marketTickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     .panel { border-radius: var(--radius-lg); background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
-    .panel-head { padding: 20px 24px 12px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;}
-    .panel-head h2 { margin: 0; font-size: 18px; font-weight: 800; }
-    .panel-body { padding: 20px 24px; }
+    .panel-head { padding: 16px 20px 12px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;}
+    .panel-head h2 { margin: 0; font-size: 16px; font-weight: 800; }
+    .panel-body { padding: 16px 20px; }
     .num-val { font-family: "DIN Alternate", "Helvetica Neue", Arial, sans-serif; font-weight: 800; letter-spacing: -0.5px; }
 
     /* 顶部三大指标合成区 */
-    .combo-panel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 24px; }
+    .combo-panel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
     .combo-col { display: flex; flex-direction: column; }
-    .combo-col:not(:last-child) { border-right: 1px solid var(--line); padding-right: 24px; }
-    .combo-title { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; text-align: center; }
-    .sub-meta { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 14px; line-height: 1.4; }
+    .combo-col:not(:last-child) { border-right: 1px solid var(--line); padding-right: 20px; }
+    .combo-title { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 4px; text-align: center; }
+    .sub-meta { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 12px; line-height: 1.4; }
 
-    /* 1. 紧张感实时区域 */
-    .realtime-stack { display: grid; gap: 12px; }
-    .r-card { background: var(--bg); border-radius: 12px; padding: 14px; text-align: center; border: 1px solid var(--line); }
-    .r-card .r-label { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-    .r-card .r-val { font-size: 34px; line-height: 1.1; }
+    /* 2. 在途与滞留并排展示 */
+    .realtime-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .r-card { background: var(--bg); border-radius: 10px; padding: 12px 6px; text-align: center; border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center;}
+    .r-card .r-label { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .r-card .r-val { font-size: clamp(24px, 4vw, 30px); line-height: 1; }
     .transit-box .r-label { color: var(--muted); }
     .transit-box .r-val { color: var(--green); }
     .stranded-box { position: relative; border-color: rgba(239, 68, 68, 0.4); animation: alertFlash 2s infinite; }
@@ -96,125 +77,138 @@
     .stranded-box .r-val { color: var(--red); }
     @keyframes alertFlash {
       0% { background-color: rgba(239, 68, 68, 0.02); box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
-      50% { background-color: rgba(239, 68, 68, 0.1); box-shadow: 0 0 12px rgba(239, 68, 68, 0.2); }
+      50% { background-color: rgba(239, 68, 68, 0.1); box-shadow: 0 0 8px rgba(239, 68, 68, 0.2); }
       100% { background-color: rgba(239, 68, 68, 0.02); box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
     }
-    .details-toggle-btn { margin-top: 10px; width: 100%; padding: 6px; background: rgba(239, 68, 68, 0.1); border: none; border-radius: 6px; color: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-    .details-toggle-btn:hover { background: rgba(239, 68, 68, 0.2); }
-    .pie-container { width: 100%; height: 160px; margin-top: 8px; }
+    
+    .details-toggle-wrap { grid-column: 1 / -1; margin-top: 4px; }
+    .details-toggle-btn { width: 100%; padding: 8px; background: rgba(239, 68, 68, 0.08); border: none; border-radius: 8px; color: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .bar-container { width: 100%; height: 140px; margin-top: 8px; }
 
-    /* 2. 核心机构日通行量 */
-    .daily-flow-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .daily-flow-item { background: var(--bg); border-radius: 12px; padding: 14px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--line); }
-    .daily-flow-item .source { font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 6px; text-align: center; line-height: 1.2;}
-    .daily-flow-item .val { font-size: 26px; color: var(--ink); line-height: 1;}
-    .chg-tag { margin-top: 6px; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    /* 日数据 */
+    .daily-flow-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .daily-flow-item { background: var(--bg); border-radius: 10px; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--line); }
+    .daily-flow-item .source { font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 6px; text-align: center; line-height: 1.2;}
+    .daily-flow-item .val { font-size: 22px; color: var(--ink); line-height: 1;}
+    .chg-tag { margin-top: 6px; padding: 2px 4px; border-radius: 4px; font-size: 10px; font-weight: 700; white-space: nowrap; transform: scale(0.95); }
     .chg-tag.up { background: var(--red-soft); color: var(--red); }
     .chg-tag.down { background: var(--green-soft); color: var(--green); }
     .chg-tag.flat { background: #e2e8f0; color: var(--muted); }
 
-    /* 3. 压力系数 */
+    /* 3. 压力系数 & 高压品种(1排3个，2列) */
     .gauge-container { width: 100%; height: 160px; margin-top: -10px; transition: all 0.5s ease; }
-    .stress-rank-head { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px; position: relative; }
+    .stress-rank-head { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; position: relative; }
     .help-icon { width: 14px; height: 14px; border-radius: 50%; background: var(--muted); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; cursor: help; }
-    .help-tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; padding: 8px 12px; background: rgba(15, 23, 42, 0.9); color: white; font-size: 12px; border-radius: 6px; white-space: nowrap; transition: 0.2s; z-index: 10; font-weight: normal; }
+    .help-tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; padding: 8px 12px; background: rgba(15, 23, 42, 0.9); color: white; font-size: 11px; border-radius: 6px; white-space: nowrap; transition: 0.2s; z-index: 10; font-weight: normal; }
     .help-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: rgba(15, 23, 42, 0.9) transparent transparent transparent; }
     .help-icon:hover + .help-tooltip { visibility: visible; opacity: 1; }
-    .stress-rank-list { display: grid; gap: 6px; }
-    .stress-rank-row { display: flex; justify-content: space-between; padding: 8px 12px; background: var(--bg); border-radius: 8px; font-size: 13px; }
-    .stress-rank-index { width: 18px; height: 18px; border-radius: 50%; background: var(--sea-soft); color: var(--sea); font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; }
-    .toggle-btn { width: 100%; padding: 8px; margin-top: 8px; background: transparent; border: 1px dashed var(--muted); border-radius: 8px; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 700; transition: 0.2s; }
-    .toggle-btn:hover { background: var(--bg); color: var(--ink); }
+    
+    .stress-rank-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .stress-card { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 2px; text-align: center; }
+    .stress-card .s-name { font-size: 11px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .stress-card .s-val { color: var(--red); font-size: 16px; font-weight: 800; font-family: "DIN Alternate", sans-serif; line-height: 1; }
 
     /* 快照播放器区域 */
     .snapshot-gif-wrap { position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 12px; background: #e2e8f0; border: 1px solid var(--line); }
-    .snapshot-img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .snapshot-img { width: 100%; height: 360px; object-fit: cover; display: block; }
     .snapshot-overlay { position: absolute; top: 12px; left: 12px; display: grid; gap: 6px; pointer-events: none; }
-    .snapshot-stamp { border-radius: 8px; padding: 6px 10px; font-size: 12px; color: #fff; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); }
+    .snapshot-stamp { border-radius: 8px; padding: 4px 8px; font-size: 11px; color: #fff; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); }
     .snapshot-compare-controls { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .snapshot-compare-btn { border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); padding: 6px 14px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .snapshot-compare-btn { border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); padding: 6px 12px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
     .snapshot-compare-btn.active { background: var(--sea); color: #fff; border-color: var(--sea); }
-    .snapshot-player { display: flex; align-items: center; gap: 12px; background: var(--bg); padding: 12px 16px; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--line); }
-    .play-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--sea); color: white; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .snapshot-player { display: flex; align-items: center; gap: 12px; background: var(--bg); padding: 10px 14px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--line); }
+    .play-btn { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--sea); color: white; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .time-slider { flex: 1; cursor: pointer; }
-    .time-display { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 50px; text-align: right; }
+    .time-display { font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; }
 
     /* 通行记录：3卡片并排 (强制) + 图表切换 */
     .source-cards { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 8px; margin-bottom: 20px; }
-    .source-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 4px; background: var(--bg); cursor: pointer; text-align: center; transition: 0.2s; }
+    .source-card { border: 1px solid var(--line); border-radius: 10px; padding: 10px 4px; background: var(--bg); cursor: pointer; text-align: center; transition: 0.2s; }
     .source-card.active { border-color: var(--sea); background: #fff; box-shadow: 0 0 0 2px var(--sea-soft); }
-    .source-card-name { font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .source-card-val { font-size: 22px; font-weight: 800; font-family: "DIN Alternate", sans-serif; color: var(--ink); line-height: 1; }
+    .source-card-name { font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .source-card-val { font-size: 20px; font-weight: 800; font-family: "DIN Alternate", sans-serif; color: var(--ink); line-height: 1; }
     
     .dynamic-chart-header { text-align: center; margin-bottom: 12px; }
-    .dynamic-chart-title { font-size: 16px; font-weight: 800; color: var(--ink); margin: 0 0 6px 0; }
-    .dynamic-chart-subtitle { font-size: 12px; color: var(--muted); margin: 0; }
+    .dynamic-chart-title { font-size: 15px; font-weight: 800; color: var(--ink); margin: 0 0 4px 0; }
+    .dynamic-chart-subtitle { font-size: 11px; color: var(--muted); margin: 0; }
 
-    .view-tabs { display: flex; gap: 8px; margin-bottom: 16px; justify-content: center; }
-    .view-tab { padding: 6px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--muted); transition: 0.2s; }
+    .view-tabs { display: flex; gap: 8px; margin-bottom: 12px; justify-content: center; }
+    .view-tab { padding: 4px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); font-size: 12px; font-weight: 700; cursor: pointer; color: var(--muted); transition: 0.2s; }
     .view-tab.active { background: var(--sea); color: #fff; border-color: var(--sea); }
 
-    .main-chart-wrap { border: 1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--bg); height: 300px; }
-    .main-table-wrap { border: 1px solid var(--line); border-radius: 12px; background: #fff; max-height: 300px; overflow-y: auto; display: none; }
+    .main-chart-wrap { border: 1px solid var(--line); border-radius: 10px; padding: 12px 4px 12px 12px; background: var(--bg); height: 260px; }
+    .main-table-wrap { border: 1px solid var(--line); border-radius: 10px; background: #fff; max-height: 260px; overflow-y: auto; display: none; }
     
     .history-table { width: 100%; border-collapse: collapse; text-align: center; }
-    .history-table th { background: var(--bg); padding: 10px; font-size: 13px; font-weight: 700; color: var(--muted); border-bottom: 1px solid var(--line); position: sticky; top: 0; }
-    .history-table td { padding: 12px 10px; font-size: 14px; border-bottom: 1px solid var(--line); }
+    .history-table th { background: var(--bg); padding: 8px; font-size: 12px; font-weight: 700; color: var(--muted); border-bottom: 1px solid var(--line); position: sticky; top: 0; }
+    .history-table td { padding: 10px 8px; font-size: 13px; border-bottom: 1px solid var(--line); }
     .history-table tr:last-child td { border-bottom: none; }
     .history-table td.date-col { font-weight: 700; color: var(--ink); }
-    .history-table td.val-col { font-family: "DIN Alternate", sans-serif; font-weight: 800; font-size: 16px; }
+    .history-table td.val-col { font-family: "DIN Alternate", sans-serif; font-weight: 800; font-size: 15px; }
 
-    /* 遇袭船只时间轴 */
-    .attack-timeline { position: relative; display: grid; gap: 14px; margin-top: 10px; }
-    .attack-timeline::before { content: ""; position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background: var(--line); }
-    .attack-day { position: relative; width: calc(100% - 32px); margin-left: 32px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); padding: 16px; }
-    .attack-day::after { content: ""; position: absolute; top: 20px; left: -22px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px var(--red-soft); }
-    .attack-day-date { font-size: 16px; font-weight: 800; color: var(--red); }
-    .attack-list { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 8px; }
-    .attack-list li { font-size: 13px; color: var(--ink); line-height: 1.5; }
+    /* 4. 遇袭船只横向时间轴 */
+    .attack-timeline-hz { 
+      display: flex; overflow-x: auto; gap: 12px; padding: 4px 4px 16px 4px; 
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; 
+    }
+    .attack-timeline-hz::-webkit-scrollbar { height: 4px; }
+    .attack-timeline-hz::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    
+    .attack-day-card { 
+      flex: 0 0 260px; scroll-snap-align: start; background: var(--bg); 
+      border: 1px solid var(--line); border-radius: 12px; padding: 14px; 
+    }
+    .attack-day-date { 
+      display: flex; justify-content: space-between; align-items: center; 
+      font-size: 15px; font-weight: 800; color: var(--red); 
+      border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 10px; 
+    }
+    .attack-day-date span { font-size: 12px; color: var(--muted); font-weight: 700; }
+    .attack-list { margin: 0; padding-left: 16px; display: grid; gap: 6px; }
+    .attack-list li { font-size: 12px; color: var(--ink); line-height: 1.4; }
 
     /* 快讯动态 */
-    .flash-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;}
-    .flash-tab { padding: 6px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 13px; font-weight: 700; cursor: pointer; }
+    .flash-tabs { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;}
+    .flash-tab { padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 12px; font-weight: 700; cursor: pointer; }
     .flash-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
-    .flash-item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .flash-item { padding: 10px 0; border-bottom: 1px solid var(--line); }
     .flash-item:last-child { border-bottom: none; }
-    .flash-time { color: var(--sea); font-weight: 700; font-size: 13px; margin-right: 8px; }
-    .flash-text { font-size: 14px; color: var(--ink); line-height: 1.6; display: inline; }
+    .flash-time { color: var(--sea); font-weight: 700; font-size: 12px; margin-right: 6px; }
+    .flash-text { font-size: 13px; color: var(--ink); line-height: 1.5; display: inline; }
+    .toggle-btn { width: 100%; padding: 8px; margin-top: 8px; background: transparent; border: 1px dashed var(--muted); border-radius: 8px; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 700; transition: 0.2s; }
+    .toggle-btn:hover { background: var(--bg); color: var(--ink); }
 
-    /* 风暴眼 */
+    /* 5. 风暴眼 & 白底紧凑2排 */
     .storm-tabs { display: flex; gap: 8px; }
-    .storm-tab { padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); font-size: 13px; font-weight: 700; cursor: pointer; color: var(--muted); }
+    .storm-tab { padding: 4px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); font-size: 12px; font-weight: 700; cursor: pointer; color: var(--muted); }
     .storm-tab.active { background: var(--sea); color: #fff; border-color: var(--sea); }
     .storm-pane { display: none; }
     .storm-pane.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 白底紧凑三排 */
-    .commodity-grid { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
-    .commodity-card { border-radius: 8px; padding: 12px; border: 1px solid var(--line); background: #fff; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
+    .commodity-grid { display: grid; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+    .commodity-card { border-radius: 8px; padding: 10px; border: 1px solid var(--line); background: #fff; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
     .commodity-head { display: flex; justify-content: space-between; align-items: center; }
-    .commodity-head strong { font-size: 14px; font-weight: 800; }
-    .risk-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--red-soft); color: var(--red); font-weight: 700; }
-    .c-core { display: flex; justify-content: space-between; font-size: 12px; }
+    .commodity-head strong { font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 4px;}
+    .risk-badge { font-size: 10px; padding: 2px 4px; border-radius: 4px; background: var(--red-soft); color: var(--red); font-weight: 700; }
+    .c-core { display: flex; justify-content: space-between; font-size: 11px; }
     .c-core .label { color: var(--muted); }
     .c-core .val { font-weight: 700; color: var(--ink); font-family: "DIN Alternate", sans-serif;}
 
-    .footer-sources { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .footer-sources { margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--line); text-align: center; font-size: 11px; color: var(--muted); line-height: 1.6; }
 
     @media (max-width: 900px) {
       .combo-panel { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
       .combo-col:not(:last-child) { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 16px; }
-      .commodity-head strong { font-size: 12px; }
       .c-core { flex-direction: column; gap: 2px; }
-      .c-core .val { font-size: 14px;}
+      .c-core .val { font-size: 13px;}
     }
   </style>
 </head>
 <body>
   <div class="page">
     
-    <div class="header-banner">
+    <div class="header-simple">
       <h1>霍尔木兹海峡通行量仪表盘</h1>
       <div class="status-badge" id="tag-status">状态获取中...</div>
     </div>
@@ -241,7 +235,7 @@
     <section class="panel combo-panel">
       <div class="combo-col">
         <div class="combo-title">海峡实时现状</div>
-        <div class="sub-meta">数据源：Hormuz Strait Monitor（实时）<br>更新时间（北京时间）：<span id="rt-update-time">2026-03-17 12:56:10</span></div>
+        <div class="sub-meta">数据源：Hormuz Strait Monitor（实时）<br>更新时间：<span id="rt-update-time">2026-03-17 12:56:10</span></div>
         <div class="realtime-stack">
           <div class="r-card transit-box">
             <div class="r-label">当前在途船舶</div>
@@ -250,9 +244,11 @@
           <div class="r-card stranded-box">
             <div class="r-label">实时滞留船舶</div>
             <div class="r-val num-val" id="val-stranded">--</div>
-            <button class="details-toggle-btn" id="pie-toggle-btn">查看滞留船舶详情 ▾</button>
-            <div id="pie-collapse" style="display: none;">
-              <div id="realtime-pie" class="pie-container"></div>
+          </div>
+          <div class="details-toggle-wrap">
+            <button class="details-toggle-btn" id="chart-toggle-btn">查看滞留船舶详情 ▾</button>
+            <div id="chart-collapse" style="display: none;">
+              <div id="realtime-bar" class="bar-container"></div>
             </div>
           </div>
         </div>
@@ -260,7 +256,7 @@
 
       <div class="combo-col">
         <div class="combo-title">霍尔木兹海峡船只通行量日数据</div>
-        <div class="sub-meta">更新时间（北京时间）：<span id="daily-update-time">2026-03-17 12:56:10</span></div>
+        <div class="sub-meta">更新时间：<span id="daily-update-time">2026-03-17 12:56:10</span></div>
         <div class="daily-flow-list">
           <div class="daily-flow-item">
             <span class="source">UKMTO<br>/JMIC</span>
@@ -288,9 +284,8 @@
           <span class="help-icon" id="stress-help-icon">?</span>
           <div class="help-tooltip" id="stress-tooltip">按最新通行 0 对比 7 日均值 0 计算</div>
         </div>
-        <div class="stress-rank-list" id="stress-top3-list"></div>
-        <div class="stress-rank-list" id="stress-rest-list" style="display: none; margin-top: 6px;"></div>
-        <button class="toggle-btn" id="stress-toggle-btn">展开更多高压品种 ▾</button>
+        <div class="stress-rank-grid" id="stress-top6-list">
+          </div>
       </div>
     </section>
 
@@ -298,13 +293,13 @@
       <div class="panel-head">
         <div>
           <h2>霍尔木兹海峡动态快照</h2>
-          <p style="margin: 4px 0 0; font-size: 13px; color: var(--muted);">来源：MarineTraffic实时数据</p>
+          <p style="margin: 4px 0 0; font-size: 12px; color: var(--muted);">来源：MarineTraffic实时数据</p>
         </div>
       </div>
       <div class="panel-body">
         <div class="snapshot-compare-controls" id="snapshot-controls">
           <button class="snapshot-compare-btn active" data-mock-hour="12">当前快照</button>
-          <button class="snapshot-compare-btn" data-mock-hour="6">上一期快照（6小时前）</button>
+          <button class="snapshot-compare-btn" data-mock-hour="6">上一期（6小时前）</button>
           <button class="snapshot-compare-btn" data-mock-hour="0">昨日同期快照</button>
         </div>
         
@@ -321,7 +316,7 @@
           <input type="range" class="time-slider" id="snapshot-slider" min="0" max="23" value="12">
           <div class="time-display" id="snapshot-time-label">12:00</div>
         </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:8px;">固定视野口径：中心点与缩放比例保持一致（仅船只变化）。</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">固定视野口径：中心点与缩放比例保持一致（仅船只变化）。</div>
       </div>
     </section>
 
@@ -377,14 +372,12 @@
       <div class="panel-head">
         <div>
           <h2>遇袭船只时间轴</h2>
-          <p style="margin: 4px 0 0; font-size: 13px; color: var(--muted);">来源：战争研究所 (ISW) 等。</p>
+          <p style="margin: 2px 0 0; font-size: 11px; color: var(--muted);">来源：战争研究所 (ISW) 等。</p>
         </div>
       </div>
-      <div class="panel-body">
-        <div id="attack-timeline" class="attack-timeline"></div>
-        <div style="margin-top:16px;text-align:center;">
-          <button class="toggle-btn" id="attack-timeline-toggle" style="width: auto; padding: 8px 24px; display: inline-block;">展开其余日期 ▾</button>
-        </div>
+      <div class="panel-body" style="padding-bottom: 0;">
+        <div id="attack-timeline" class="attack-timeline-hz">
+          </div>
       </div>
     </section>
 
@@ -392,15 +385,15 @@
       <div class="panel-head">
         <h2>伊朗-霍尔木兹风暴眼</h2>
         <div class="storm-tabs">
-          <button class="storm-tab active" data-target="pane-map">基础设施分布图</button>
-          <button class="storm-tab" data-target="pane-commodity">品种冲击热区</button>
+          <button class="storm-tab" data-target="pane-map">基础设施分布图</button>
+          <button class="storm-tab active" data-target="pane-commodity">品种冲击热区</button>
         </div>
       </div>
       <div class="panel-body">
-        <div id="pane-map" class="storm-pane active">
+        <div id="pane-map" class="storm-pane">
           <img src="./iran-oil-gas-infra.jpg" alt="伊朗基础设施" style="width: 100%; border-radius: 12px; border: 1px solid var(--line);" />
         </div>
-        <div id="pane-commodity" class="storm-pane">
+        <div id="pane-commodity" class="storm-pane active">
           <div id="commodity-grid" class="commodity-grid"></div>
         </div>
       </div>
@@ -416,7 +409,6 @@
   <script>
     let data = null;
     let mainLineChart = null;
-    let attackTimelineExpanded = false;
 
     // 快讯数据
     const HORMUZ_FLASH_FEED = {
@@ -492,34 +484,37 @@
       document.getElementById('val-stranded').textContent = formatCount(strandedTotal);
       document.getElementById('val-transit').textContent = formatCount(realtime.shipCountCurrentTransits);
 
-      const pieCollapse = document.getElementById('pie-collapse');
-      const pieBtn = document.getElementById('pie-toggle-btn');
-      let pieChart = null;
-      let isPieOpen = false;
+      // 滞留条形图逻辑
+      const chartCollapse = document.getElementById('chart-collapse');
+      const chartBtn = document.getElementById('chart-toggle-btn');
+      let barChart = null;
+      let isChartOpen = false;
 
-      pieBtn.onclick = () => {
-        isPieOpen = !isPieOpen;
-        pieCollapse.style.display = isPieOpen ? 'block' : 'none';
-        pieBtn.textContent = isPieOpen ? '收起滞留详情 ▴' : '查看滞留船舶详情 ▾';
-        if (isPieOpen) {
-          if (!pieChart) {
-            pieChart = echarts.init(document.getElementById('realtime-pie'));
-            pieChart.setOption({
-              tooltip: { trigger: 'item', formatter: '{b}: {c}艘 ({d}%)' },
-              color: ['#ef4444', '#f59e0b', '#0284c7'],
+      chartBtn.onclick = () => {
+        isChartOpen = !isChartOpen;
+        chartCollapse.style.display = isChartOpen ? 'block' : 'none';
+        chartBtn.textContent = isChartOpen ? '收起滞留详情 ▴' : '查看滞留船舶详情 ▾';
+        if (isChartOpen) {
+          if (!barChart) {
+            barChart = echarts.init(document.getElementById('realtime-bar'));
+            barChart.setOption({
+              tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+              grid: { left: 60, right: 30, top: 10, bottom: 10 },
+              xAxis: { type: 'value', show: false },
+              yAxis: { type: 'category', data: ['其他', '散货船', '油轮'], axisLine: {show:false}, axisTick: {show:false}, axisLabel: {fontWeight: 'bold'} },
               series: [{
-                type: 'pie', radius: ['40%', '80%'], center: ['50%', '50%'],
-                avoidLabelOverlap: false, label: { show: false },
-                itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 2 },
+                type: 'bar',
                 data: [
-                  { value: realtime.strandedVesselsTankers || 45, name: '滞留油轮' },
-                  { value: realtime.strandedVesselsBulkCarriers || 22, name: '滞留散货船' },
-                  { value: realtime.strandedVesselsOther || 18, name: '其他滞留' }
-                ]
+                  { value: realtime.strandedVesselsOther || 18, itemStyle: {color: '#0284c7', borderRadius: [0, 4, 4, 0]} },
+                  { value: realtime.strandedVesselsBulkCarriers || 22, itemStyle: {color: '#f59e0b', borderRadius: [0, 4, 4, 0]} },
+                  { value: realtime.strandedVesselsTankers || 45, itemStyle: {color: '#ef4444', borderRadius: [0, 4, 4, 0]} }
+                ],
+                label: { show: true, position: 'right', fontWeight: 'bold' },
+                barWidth: 18
               }]
             });
           }
-          setTimeout(() => pieChart.resize(), 100);
+          setTimeout(() => barChart.resize(), 100);
         }
       };
 
@@ -532,12 +527,11 @@
       renderChgTag('chg-windward', getCollapsePct(sources, 'windward'));
       renderChgTag('chg-kpler', getCollapsePct(sources, 'kpler'));
 
-      // 填入底部联动卡片
       document.getElementById('card-val-ukmto').textContent = formatCount(getLast('ukmto'));
       document.getElementById('card-val-windward').textContent = formatCount(getLast('windward'));
       document.getElementById('card-val-kpler').textContent = formatCount(getLast('kpler'));
 
-      // 仪表盘动画实现
+      // 仪表盘动画
       const stressGauge = echarts.init(document.getElementById('stress-gauge'));
       const stressVal = exposure.stressPct || 0;
       
@@ -547,43 +541,25 @@
           axisLine: { lineStyle: { width: 12, color: [[0.3, '#10b981'], [0.7, '#f59e0b'], [1, '#ef4444']] } },
           pointer: { length: '60%', width: 6, offsetCenter: [0, '-10%'] },
           axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
-          detail: { fontSize: 32, offsetCenter: [0, '-30%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
-          data: [{ value: 0 }] // 初始化为0，为了出场动画
+          detail: { fontSize: 30, offsetCenter: [0, '-30%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
+          data: [{ value: 0 }] 
         }]
       };
       
       stressGauge.setOption(gaugeOption);
-      
-      // 延迟0.3秒触发指针走到实际数值的动画
-      setTimeout(() => {
-        stressGauge.setOption({
-          series: [{ data: [{ value: stressVal }] }]
-        });
-      }, 300);
+      setTimeout(() => { stressGauge.setOption({ series: [{ data: [{ value: stressVal }] }] }); }, 300);
 
       document.getElementById('stress-tooltip').textContent = `按最新通行 ${summary.latestCrossings || 0} 对比 7 日均值 ${summary.sevenDayAverage || 0} 计算`;
 
+      // 固定展示 Top 6 高压品种
       const items = (exposure.items || []).sort((a,b) => b.riskScore - a.riskScore);
-      const renderRow = (item, idx) => `
-        <div class="stress-rank-row">
-          <div><span class="stress-rank-index">${idx + 1}</span><strong>${item.name}</strong></div>
-          <div style="color:var(--red); font-weight:800; font-family:'DIN Alternate',sans-serif;">${Number(item.riskScore).toFixed(1)}</div>
+      const renderGridItem = (item) => `
+        <div class="stress-card">
+          <div class="s-name">${item.name}</div>
+          <div class="s-val">${Number(item.riskScore).toFixed(1)}</div>
         </div>
       `;
-      
-      const top3List = document.getElementById('stress-top3-list');
-      const restList = document.getElementById('stress-rest-list');
-      const toggleBtn = document.getElementById('stress-toggle-btn');
-      top3List.innerHTML = items.slice(0, 3).map(renderRow).join('');
-      if (items.length > 3) {
-        restList.innerHTML = items.slice(3, 10).map((item, i) => renderRow(item, i + 3)).join('');
-        let isExpanded = false;
-        toggleBtn.onclick = () => {
-          isExpanded = !isExpanded;
-          restList.style.display = isExpanded ? 'grid' : 'none';
-          toggleBtn.textContent = isExpanded ? '收起 ▴' : '展开更多高压品种 ▾';
-        };
-      } else { toggleBtn.style.display = 'none'; }
+      document.getElementById('stress-top6-list').innerHTML = items.slice(0, 6).map(renderGridItem).join('');
     }
 
     function initSnapshotPlayer() {
@@ -707,9 +683,9 @@
           mainLineChart.setOption({
             color: [colorMap[activeSource]],
             tooltip: { trigger: 'axis' },
-            grid: { left: 40, right: 20, top: 20, bottom: 30 },
-            xAxis: { type: 'category', data: sorted.map(d=>d.date), axisLabel: { color: '#64748b' } },
-            yAxis: { type: 'value', axisLabel: { color: '#64748b' }, splitLine: { lineStyle: { type: 'dashed', color: '#f1f5f9' } } },
+            grid: { left: 30, right: 10, top: 10, bottom: 20 },
+            xAxis: { type: 'category', data: sorted.map(d=>d.date), axisLabel: { color: '#64748b', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: '#64748b', fontSize: 10 }, splitLine: { lineStyle: { type: 'dashed', color: '#f1f5f9' } } },
             series: [{ name: nameMap[activeSource], type: 'line', data: sorted.map(d=>d.totalCrossings), smooth: true, lineStyle: { width: 3 }, areaStyle: { opacity: 0.1 } }]
           }, true);
           mainLineChart.resize();
@@ -772,9 +748,9 @@
       if (dates.length > 0) renderDateNews(dates[0]);
     }
 
+    // 渲染遇袭船只时间轴 (横向滑动)
     function renderAttackTimeline() {
       const container = document.getElementById('attack-timeline');
-      const toggleBtn = document.getElementById('attack-timeline-toggle');
       if (!container) return;
 
       const grouped = {};
@@ -785,31 +761,15 @@
 
       const dates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
       
-      const renderList = () => {
-        const visibleDates = attackTimelineExpanded ? dates : dates.slice(0, 2);
-        container.innerHTML = visibleDates.map(date => {
-          const listHtml = grouped[date].map(row => `<li><b>${row.shipName || "未知"}</b> ｜ ${row.shipType} ｜ ${row.seaArea}</li>`).join("");
-          return `
-            <div class="attack-day">
-              <div class="attack-day-date">${date} <span style="font-size:12px;color:var(--muted);font-weight:700;float:right;">${grouped[date].length} 艘</span></div>
-              <ul class="attack-list">${listHtml}</ul>
-            </div>
-          `;
-        }).join("");
-      };
-
-      renderList();
-
-      if (dates.length > 2) {
-        toggleBtn.style.display = 'inline-block';
-        toggleBtn.onclick = () => {
-          attackTimelineExpanded = !attackTimelineExpanded;
-          renderList();
-          toggleBtn.textContent = attackTimelineExpanded ? '收起其余日期 ▴' : '展开其余日期 ▾';
-        };
-      } else {
-        toggleBtn.style.display = 'none';
-      }
+      container.innerHTML = dates.map(date => {
+        const listHtml = grouped[date].map(row => `<li><b>${row.shipName || "未知"}</b> ｜ ${row.shipType} ｜ ${row.seaArea}</li>`).join("");
+        return `
+          <div class="attack-day-card">
+            <div class="attack-day-date">${date} <span>${grouped[date].length} 艘</span></div>
+            <ul class="attack-list">${listHtml}</ul>
+          </div>
+        `;
+      }).join("");
     }
 
     function bindStormTabs() {
@@ -823,12 +783,22 @@
       });
     }
 
+    // 品种热区 (根据名字赋予图标，2列)
+    function getCommodityIcon(name) {
+      if(name.includes('原油') || name.includes('燃油')) return '🛢️';
+      if(name.includes('天然气') || name.includes('LNG')) return '❄️';
+      if(name.includes('集装箱')) return '📦';
+      if(name.includes('散货') || name.includes('矿')) return '⛴️';
+      if(name.includes('化工') || name.includes('塑料')) return '🧪';
+      return '⚓';
+    }
+
     function renderCommodityGrid(exposure) {
       const grid = document.getElementById('commodity-grid');
       grid.innerHTML = (exposure.items || []).map(item => `
         <div class="commodity-card">
           <div class="commodity-head">
-            <strong>${item.name}</strong><span class="risk-badge">${item.riskLevel}</span>
+            <strong>${getCommodityIcon(item.name)} ${item.name}</strong><span class="risk-badge">${item.riskLevel}</span>
           </div>
           <div class="c-core"><span class="label">经海峡量</span><span class="val num-val">${item.flowValue || '--'} ${item.flowUnit || ''}</span></div>
           <div class="c-core"><span class="label">海运占比</span><span class="val num-val">${item.globalSeaborneSharePct || '--'}%</span></div>
