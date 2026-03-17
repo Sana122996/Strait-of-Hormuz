@@ -28,17 +28,16 @@
     body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); line-height: 1.5; padding: 16px; }
     .page { max-width: 1340px; margin: 0 auto; display: grid; gap: 16px; }
 
-    /* --- 清爽版标题区域 + 货船动效 --- */
+    /* --- 清爽版标题区域 + 货船悬浮动效 --- */
     .header-simple { 
-      padding: 4px 0 12px; 
+      position: relative;
+      padding: 4px 110px 12px 0; /* 留出右侧空间给货船 */
       display: flex; 
-      justify-content: space-between;
-      align-items: center; 
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-direction: column; 
+      gap: 8px; 
+      align-items: flex-start;
     }
-    .header-info { display: flex; flex-direction: column; gap: 8px; }
-    .header-info h1 { margin: 0; font-size: clamp(22px, 5vw, 32px); font-weight: 800; letter-spacing: 0.5px; color: var(--ink); }
+    .header-simple h1 { margin: 0; font-size: clamp(20px, 5vw, 32px); font-weight: 800; letter-spacing: 0.5px; color: var(--ink); line-height: 1.2; }
     .header-meta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     
     .status-badge {
@@ -50,19 +49,22 @@
     .global-update-time { font-size: 12px; color: var(--muted); font-weight: 700; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
-    /* 货船动画 */
+    /* 货船绝对定位：和标题同行，不占用垂直空间 */
     .header-ship-art {
-      width: 120px;
-      height: 60px;
-      margin-left: auto;
-      animation: floatShip 4s ease-in-out infinite;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 100px;
+      height: 50px;
       opacity: 0.85;
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      animation: floatShip 4s ease-in-out infinite;
+      pointer-events: none; /* 防止遮挡点击 */
     }
     @keyframes floatShip {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(1.5deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
+      0% { transform: translateY(-50%) rotate(0deg); }
+      50% { transform: translateY(calc(-50% - 6px)) rotate(1.5deg); }
+      100% { transform: translateY(-50%) rotate(0deg); }
     }
 
     /* 行情滚动条 */
@@ -122,7 +124,7 @@
     .chg-tag.down { background: var(--green-soft); color: var(--green); }
     .chg-tag.flat { background: #e2e8f0; color: var(--muted); }
 
-    /* 3. 压力系数 & 仪表盘 (同行布局) */
+    /* 3. 压力系数 & 仪表盘 */
     .stress-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(0,0,0,0.03); }
     .gauge-container { width: 130px; height: 75px; flex-shrink: 0; }
     
@@ -143,10 +145,10 @@
     .snapshot-overlay { position: absolute; top: 12px; left: 12px; display: grid; gap: 6px; pointer-events: none; }
     .snapshot-stamp { border-radius: 8px; padding: 4px 8px; font-size: 11px; color: #fff; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); }
     
-    /* 进度条播放器 (修改为 0-6-12-18) */
+    /* 进度条播放器 */
     .snapshot-player-wrapper { display: flex; flex-direction: column; gap: 8px; background: var(--bg); padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--line); }
     .snapshot-controls-row { display: flex; align-items: center; gap: 12px; }
-    .play-btn { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--sea); color: white; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .play-btn { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--sea); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .time-slider-container { flex: 1; display: flex; flex-direction: column; position: relative; }
     .time-slider { -webkit-appearance: none; width: 100%; height: 4px; background: #cbd5e1; border-radius: 2px; outline: none; margin: 10px 0 4px; }
     .time-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--sea); cursor: pointer; box-shadow: 0 0 4px rgba(0,0,0,0.3); }
@@ -214,7 +216,7 @@
     .commodity-card { border-radius: 8px; padding: 10px; border: 1px solid var(--line); background: #fff; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
     .commodity-head { display: flex; justify-content: space-between; align-items: flex-start; }
     .commodity-head strong { font-size: 13px; font-weight: 800; display: flex; align-items: flex-start; gap: 4px; line-height: 1.3;}
-    /* SVG Icon Style */
+    /* 核心 SVG 图标样式 */
     .c-icon { width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: var(--sea); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
     
     .risk-badge { font-size: 10px; padding: 2px 4px; border-radius: 4px; background: var(--red-soft); color: var(--red); font-weight: 700; margin-top: 1px; flex-shrink: 0; }
@@ -352,7 +354,9 @@
         </div>
         <div class="snapshot-player-wrapper">
           <div class="snapshot-controls-row">
-            <button class="play-btn" id="snapshot-play-btn">▶</button>
+            <button class="play-btn" id="snapshot-play-btn">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </button>
             <div class="time-slider-container">
               <input type="range" class="time-slider" id="snapshot-slider" min="0" max="18" step="6" value="12">
               <div class="time-ticks">
@@ -574,11 +578,11 @@
       
       const gaugeOption = {
         series: [{
-          type: 'gauge', startAngle: 180, endAngle: 0, center: ['50%', '85%'], radius: '120%', min: 0, max: 100, splitNumber: 5,
-          axisLine: { lineStyle: { width: 10, color: [[0.3, '#10b981'], [0.7, '#f59e0b'], [1, '#ef4444']] } },
-          pointer: { length: '65%', width: 5, offsetCenter: [0, '-10%'] },
+          type: 'gauge', startAngle: 180, endAngle: 0, center: ['50%', '75%'], radius: '100%', min: 0, max: 100, splitNumber: 5,
+          axisLine: { lineStyle: { width: 14, color: [[0.3, '#10b981'], [0.7, '#f59e0b'], [1, '#ef4444']] } },
+          pointer: { length: '60%', width: 6, offsetCenter: [0, '-10%'] },
           axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
-          detail: { fontSize: 24, offsetCenter: [0, '-25%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
+          detail: { fontSize: 32, offsetCenter: [0, '-25%'], formatter: '{value}%', color: 'inherit', fontFamily: "DIN Alternate" },
           data: [{ value: 0 }] 
         }]
       };
@@ -606,6 +610,10 @@
       const stampEl = document.getElementById('snapshot-generated-at');
       const baseImg = "https://img.jin10.com/news/26/03/zU9femLAOwlPyN2MEJuxe.jpg";
       
+      // SVG 图标定义
+      const playIcon = `<svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M8 5v14l11-7z"/></svg>`;
+      const pauseIcon = `<svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+
       let isPlaying = false;
       let interval = null;
 
@@ -616,13 +624,17 @@
       };
 
       slider.oninput = () => {
-        if(isPlaying) { isPlaying = false; clearInterval(interval); playBtn.textContent = '▶'; }
+        if(isPlaying) { 
+          isPlaying = false; 
+          clearInterval(interval); 
+          playBtn.innerHTML = playIcon; 
+        }
         updateUI(parseInt(slider.value));
       };
 
       playBtn.onclick = () => {
         isPlaying = !isPlaying;
-        playBtn.textContent = isPlaying ? '⏸' : '▶';
+        playBtn.innerHTML = isPlaying ? pauseIcon : playIcon;
         if (isPlaying) {
           interval = setInterval(() => {
             // 只在 0, 6, 12, 18 之间切换
@@ -630,13 +642,14 @@
             if (nextVal > 18) nextVal = 0;
             slider.value = nextVal;
             updateUI(nextVal);
-          }, 1200); // 稍微放慢速度，让切换更清晰
+          }, 1200); 
         } else {
           clearInterval(interval);
         }
       };
     }
 
+    // 将卡片的数字赋值逻辑放入 initSourceHub 中，保证万无一失
     function initSourceHub(sources) {
       const cards = document.querySelectorAll('.source-card');
       const tabs = document.querySelectorAll('.view-tab');
@@ -654,6 +667,17 @@
         'windward': { title: 'Windward：霍尔木兹海峡船舶通行记录', sub: '来源：Windward 数据' },
         'kpler': { title: 'Kpler：霍尔木兹海峡船舶通行记录', sub: '来源：Kpler 数据' }
       };
+
+      // 提取最近数值并赋给上方三卡片
+      const getLastValue = (key) => {
+        const records = sources[key]?.records || [];
+        const sorted = [...records].filter(r => !isNaN(r.totalCrossings)).sort((a,b)=> a.date.localeCompare(b.date));
+        return sorted.length ? sorted[sorted.length-1].totalCrossings : null;
+      };
+      
+      document.getElementById('card-val-ukmto').textContent = formatCount(getLastValue('ukmto'));
+      document.getElementById('card-val-windward').textContent = formatCount(getLastValue('windward'));
+      document.getElementById('card-val-kpler').textContent = formatCount(getLastValue('kpler'));
 
       const buildTable = (key) => {
         const records = sources[key]?.records || [];
@@ -823,7 +847,7 @@
         // 油桶 (Oil Barrel)
         return `<svg class="c-icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2"></rect><path d="M5 8h14M5 16h14"></path></svg>`;
       }
-      if(name.includes('天然气') || name.includes('LNG')) {
+      if(name.includes('天然气') || name.includes('LNG') || name.includes('LPG')) {
         // 火焰 (Flame)
         return `<svg class="c-icon" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`;
       }
